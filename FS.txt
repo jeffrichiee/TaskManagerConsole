@@ -2,9 +2,6 @@ package taskmanager;
 
 import java.util.Scanner;
 
-/**
- * Entry point for the Task Manager app.
- */
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
