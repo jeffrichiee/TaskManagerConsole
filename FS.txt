@@ -1,0 +1,58 @@
+package taskmanager;
+
+import java.util.Scanner;
+
+/**
+ * Entry point for the Task Manager app.
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        TaskManager manager = new TaskManager();
+        boolean running = true;
+
+        System.out.println("Welcome to the Task Manager!");
+
+        while (running) {
+            System.out.println("\n1. Add Task\n2. View Tasks\n3. Delete Task\n4. Exit");
+            System.out.print("Choose an option: ");
+            int choice = -1;
+
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Enter a number between 1 and 4.");
+                continue;
+            }
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter task description: ");
+                    String desc = scanner.nextLine();
+                    manager.addTask(desc);
+                    break;
+                case 2:
+                    manager.viewTasks();
+                    break;
+                case 3:
+                    System.out.print("Enter task ID to delete: ");
+                    try {
+                        int id = Integer.parseInt(scanner.nextLine());
+                        manager.deleteTask(id);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid ID. Please enter a number.");
+                    }
+                    break;
+                case 4:
+                    running = false;
+                    System.out.println("Exiting Task Manager.");
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
+
+        scanner.close();
+    }
+}
+
